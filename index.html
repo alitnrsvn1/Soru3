@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tahmin Oyunu</title>
+</head>
+<body>
+<div>
+    <h2>Tahmin Oyunu</h2>
+    <label id="tahmin">1. tahmini girin:</label>
+    <input type="number" id="tahminGiris">
+    <br> <br>
+    <button onclick="deneme()">Tahmin Yap</button>
+    <hr>
+    <label id="sonuc"></label>
+</div>
+<script>
+    var randomNumber = Math.floor(Math.random() * 100) + 1;
+    var sayac = 1;
+    function deneme() {
+        var kullaniciTahmini = parseInt(document.getElementById("tahminGiris").value);
+        var sonuc = document.getElementById("sonuc");
+        var tahmin = document.getElementById("tahmin");
+
+        if (kullaniciTahmini === randomNumber) {
+            sonuc.innerText = "Sayı " + sayac + " adet denemede bulundu.";
+            tahmin.innerText = "";
+            document.getElementById("tahminGiris").style.display = "none";
+        } else if (sayac === 7) {
+            sonuc.innerText = "Deneme hakkınız kalmadı. Kaybettiniz.";
+            tahmin.innerText = "";
+            document.getElementById("tahminGiris").style.display = "none";
+        } else {
+            if (kullaniciTahmini < randomNumber) {
+                sonuc.innerText = "Daha büyük bir sayı girin.";
+            } else {
+                sonuc.innerText = "Daha küçük bir sayı girin.";
+            }
+            sayac++;
+            tahmin.innerText = sayac + ". tahmini girin:";
+        }
+    }
+</script>
+</body>
+</html>
